@@ -1,16 +1,23 @@
 use core::panic;
 use std::cmp::max;
+use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Error};
 
-const FIRST_PATH: &str = "./resources/poem_1.txt";
-const SECOND_PATH: &str = "./resources/poem_2.txt";
+fn main()-> Result<(), &'static str>{
 
-fn main() {
-    // Read lines from files and
+    let args: Vec<String> = env::args().collect();
+    if args.len() != 3 {
+        return Err("Two files are required to generate diff");
+    }
+
+    let first_path = &args[1].as_str();
+    let second_path = &args[2].as_str();
+
+    // Read lines from files
     let file_lines = (
-        read_file_lines_into_vec(FIRST_PATH),
-        read_file_lines_into_vec(SECOND_PATH),
+        read_file_lines_into_vec(first_path),
+        read_file_lines_into_vec(second_path),
     );
     match file_lines {
         (Ok(first_file_lines), Ok(second_file_lines)) => {
@@ -22,17 +29,17 @@ fn main() {
                 first_file_lines.len(),
                 second_file_lines.len(),
             );
+            Ok(())
         }
-        _ => panic!("An error ocurred while trying to open the files that were being compared"),
+        _ => Err("An error ocurred while trying to open the files that were being compared"),
     }
 }
 
-fn read_file_lines_into_vec(path: &str) -> Result<Vec<String>, Error> {
-    let file = File::open(path);
+fn read_file_lines_into_vec(path_string: &str) -> Result<Vec<String>, Error> {
 
-    let file = match file {
+    let file = match File::open(path_string) {
+        Err(why) => panic!("couldn't open {}: {}", path_string, why),
         Ok(file) => file,
-        Err(e) => return Err(e),
     };
 
     let lines = BufReader::new(file).lines();
