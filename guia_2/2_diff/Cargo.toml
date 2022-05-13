@@ -1,5 +1,5 @@
 [package]
-name = "diff_2"
+name = "diff_app"
 version = "0.1.0"
 edition = "2021"
 
