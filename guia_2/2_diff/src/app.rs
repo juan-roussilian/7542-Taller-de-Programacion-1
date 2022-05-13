@@ -1,9 +1,8 @@
-use super::utils::read_file_lines_into_vec;
 use super::diff::diff;
 use super::lcs::lcs;
+use super::utils::read_file_lines_into_vec;
 
-pub fn run(first_path: &&str, second_path: &&str) -> Result<(), &'static str>{
-    
+pub fn run(first_path: &&str, second_path: &&str) -> Result<(), &'static str> {
     // Read lines from files
     let file_lines = (
         read_file_lines_into_vec(first_path),

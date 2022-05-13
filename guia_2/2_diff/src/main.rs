@@ -1,8 +1,7 @@
-use std::env;
 use diff_app::app::run;
+use std::env;
 
-fn main()-> Result<(), &'static str>{
-
+fn main() -> Result<(), &'static str> {
     let args: Vec<String> = env::args().collect();
     if args.len() != 3 {
         return Err("Two files are required to generate diff");
