@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["app",""],["diff",""],["lcs",""],["utils",""]]});
