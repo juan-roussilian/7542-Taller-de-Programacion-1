@@ -2,6 +2,12 @@ use super::diff::diff;
 use super::lcs::lcs;
 use super::utils::read_file_lines_into_vec;
 
+/// Function that runs the diff program. Prints the difference between the two files pointed ```first_path``` & ```second_path```.
+///
+/// # Examples
+/// ```
+/// run(&"path_1".as_str(),&"path_2".as_str())
+/// ```
 pub fn run(first_path: &&str, second_path: &&str) -> Result<(), &'static str> {
     // Read lines from files
     let file_lines = (

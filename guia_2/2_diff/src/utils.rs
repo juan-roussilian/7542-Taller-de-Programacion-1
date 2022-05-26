@@ -3,7 +3,15 @@ use std::{
     fs::File,
     io::{BufRead, BufReader},
 };
-
+///Reads the lines from the path at ```path_string``` and returns an vec containing said lines on success or a string representing the error.
+/// 
+///  # Examples
+/// ```
+/// lines = match read_file_lines_into_vec(&"file".as_str()){
+///        Ok(lines) => lines,
+///        Err(error_message) => println!(error_message),
+///     };
+/// ```
 pub fn read_file_lines_into_vec(path_string: &str) -> Result<Vec<String>, String> {
     let file = match File::open(path_string) {
         Ok(file) => file,
